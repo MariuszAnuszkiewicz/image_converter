@@ -20,7 +20,7 @@ require_once "./config/config_store.php";
 
 if(isset($_POST['create_picture_btn'])) {
     $convert = new DataConvertImage;
-    $convert->content(new line_of_table\LineTable, new header_of_table\HeaderTable);
+    $convert->content(new line_of_table\LineTable, new \\\header_of_table\HeaderTable);
 }
 
 if(isset($_POST['delete_picture_btn'])) {
