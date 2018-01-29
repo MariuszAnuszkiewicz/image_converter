@@ -24,7 +24,6 @@ function autoloader($class) {
 
         require_once '' . $configClasses . '';
     }
-    echo "dssd";
 }
 
 spl_autoload_register('autoloader');
