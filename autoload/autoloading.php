@@ -4,11 +4,13 @@ define('ROOT', dirname(dirname(__FILE__)));
 
 function autoloader($class) {
 
-    $namespaces = ['line_of_table\\', 'header_of_table\\'];
+    $pos_start = strripos($class, '\\');
+    $pos_end = strlen($class);
+    $class_name = substr(ltrim($class), $pos_start, $pos_end);
 
-    $pathMain = ROOT . '/' . $class . '.php';
-    $pathClasses = ROOT . '/classes/' . str_replace($namespaces, '', $class) . '.php';
-    $configClasses = ROOT . '/config/' . str_replace($namespaces, '', $class) . '.php';
+    $pathMain = ROOT . '/' . $class_name . '.php';
+    $pathClasses = ROOT . '/classes/' . str_replace($class_name, '', $class) . '.php';
+    $configClasses = ROOT . '/config/' . str_replace($class_name, '', $class) . '.php';
 
     if (file_exists($pathMain)) {
 
@@ -23,10 +25,7 @@ function autoloader($class) {
         require_once '' . $configClasses . '';
 
     }
-
 }
 
 spl_autoload_register('autoloader');
 
-
-?>
