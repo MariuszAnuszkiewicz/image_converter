@@ -14,7 +14,7 @@
     </form>
 </div>
 
-<?php namespace MariuszAnuszkiewicz\src\Fetch;
+<?php 
 include_once "./autoload/autoloading.php";
 require_once "./config/config_store.php";
 
