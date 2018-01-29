@@ -26,7 +26,6 @@ if(isset($_POST['create_picture_btn'])) {
 if(isset($_POST['delete_picture_btn'])) {
     unlink(Config::get('full_table'));
 }
-echo "HHHH";
 ?>
 
 </body>
