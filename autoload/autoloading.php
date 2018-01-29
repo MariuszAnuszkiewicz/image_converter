@@ -23,8 +23,8 @@ function autoloader($class) {
     } else if (file_exists($configClasses)) {
 
         require_once '' . $configClasses . '';
-
     }
+    echo "dssd";
 }
 
 spl_autoload_register('autoloader');
