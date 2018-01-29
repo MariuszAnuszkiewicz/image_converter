@@ -9,6 +9,7 @@ function autoloader($class) {
     $pathMain = ROOT . '/' . $class . '.php';
     $pathClasses = ROOT . '/classes/' . str_replace($namespaces, '', $class) . '.php';
     $configClasses = ROOT . '/config/' . str_replace($namespaces, '', $class) . '.php';
+    $dfddfdf;
 
     if (file_exists($pathMain)) {
 
