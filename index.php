@@ -22,8 +22,7 @@ if(isset($_POST['create_picture_btn'])) {
 }
 
 if(isset($_POST['delete_picture_btn'])) {
-   $convert = new DataConvertImage;
-   unlink($convert::$save_files[2]);
+   unlink(DataConvertImage::$save_files[2]);
 }
 
 ?>
