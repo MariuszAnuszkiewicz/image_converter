@@ -1,3 +1,33 @@
+<?php
+
+use MariuszAnuszkiewicz\classes\Header\Header;
+use MariuszAnuszkiewicz\classes\Lines\Lines;
+use MariuszAnuszkiewicz\classes\DataConvertImage\DataConvertImage;
+
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+if (!defined('ROOT')) {
+    define('ROOT', dirname(__FILE__));
+}
+if (!defined('AUTOLOAD')) {
+    define('AUTOLOAD', './autoload');
+}
+
+require_once AUTOLOAD . DS . "autoloading.php";
+
+if(isset($_POST['create_picture_btn'])) {
+   $convert = new DataConvertImage;
+   $convert->content(new Header, new Lines);
+}
+
+if(isset($_POST['delete_picture_btn'])) {
+   $convert = new DataConvertImage;
+   unlink($convert::$save_files[2]);
+}
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -13,21 +43,6 @@
         <input type="submit" name="delete_picture_btn" id="delete_picture" value="Usuń Obraz" />
     </form>
 </div>
-
-<?php
-include_once "./autoload/autoloading.php";
-require_once "./config/config_store.php";
-
-if(isset($_POST['create_picture_btn'])) {
-    $convert = new DataConvertImage;
-    $convert->content(new line_of_table\LineTable, new header_of_table\HeaderTable);
-}
-
-if(isset($_POST['delete_picture_btn'])) {
-    unlink(Config::get('full_table'));
-}
-?>
-
 </body>
 </html>
 

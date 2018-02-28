@@ -1,30 +1,29 @@
 <?php
 
-define('ROOT', dirname(dirname(__FILE__)));
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+if (!defined('ROOT')) {
+    define('ROOT', dirname(dirname(__FILE__)));
+}
 
-function autoloader($class) {
+function autoloadSources($class) {
 
     $pos_start = strripos($class, '\\');
     $pos_end = strlen($class);
     $class_name = substr(ltrim($class), $pos_start, $pos_end);
+    $file_class = ROOT . DS . '/classes/' . DS . str_replace('\\', DS, ucfirst($class_name)) . '.php';
 
-    $pathMain = ROOT . '/' . $class_name . '.php';
-    $pathClasses = ROOT . '/classes/' . str_replace($class_name, '', $class) . '.php';
-    $configClasses = ROOT . '/config/' . str_replace($class_name, '', $class) . '.php';
-
-    if (file_exists($pathMain)) {
-
-        require_once '' . $pathMain . '';
-
-    } else if (file_exists($pathClasses)) {
-
-        require_once '' . $pathClasses . '';
-
-    } else if (file_exists($configClasses)) {
-
-        require_once '' . $configClasses . '';
+    if($pos_start) {
+        if (is_readable($file_class)) {
+            require_once "$file_class";
+        }
+    }
+    else {
+        throw new Exception('Failed to include class '. $class_name);
     }
 }
 
-spl_autoload_register('autoloader');
+spl_autoload_register('autoloadSources');
+
 
